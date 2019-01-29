@@ -6,7 +6,8 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3",
-    "mobx": "5.9.0"
+    "mobx": "5.9.0",
+    "bootstrap": "4.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
