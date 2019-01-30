@@ -1,7 +1,7 @@
 {
-  "name": "quarry",
+  "name": "campuswatch",
   "version": "1.0.0",
-  "description": "Application that stores project data across different EDGE rotations",
+  "description": "Application that helps off-campus students connect with each other",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,25 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seoa/ITWS_Capstone_Team2.git"
+    "url": "git+https://github.com/CarolynAnn/rcos-campuswatch.git"
   },
-  "author": "ITWS Capstone 2018: Team 2",
-  "license": "ISC",
+  "author": "Rcos campus watch",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/seoa/ITWS_Capstone_Team2/issues"
+    "url": "https://github.com/CarolynAnn/rcos-campuswatch/issues"
   },
-  "homepage": "https://github.com/seoa/ITWS_Capstone_Team2#readme",
+  "homepage": "hhttps://github.com/CarolynAnn/rcos-campuswatch#readme",
   "dependencies": {
-    "angular": "1.7.5",
-    "angular-animate": "^1.5.8",
-    "angular-ui-router": "^0.3.2",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "multer": "1.4.1",
     "mime": "2.4.0",
-    "jquery": "3.3.1",
-    "bootstrap": "4.1.0",
-    "popper.js": "^1.14.6",
     "cors":"2.8.5"
   }
 }
