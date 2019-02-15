@@ -1,51 +1,85 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-
-
+import React, {Component} from 'react';
+import {MuiThemeProvider} from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import {Link} from 'react-router-dom'
+import { SnackbarProvider } from 'notistack';
+import {redirectTo} from './services/util/util'
+import {logo} from './logo.svg'
+import Main from './main'
+import Header from './components/header/header'
+import theme from './theme'
+import './App.css'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      drawerIsOpen:false,
+      links:[ 'login', 'register']
+    }
+    this.toggleDrawer = this.toggleDrawer.bind(this);
   
-  componentDidMount(){
 
-    fetch('http://localhost:8080/api/test', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        val: "my value"
-      })
-    }).then((res) => {
-      return res.json();
-    }).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    });
-  
+    this.redirectTo = redirectTo.bind(this);
+
+  }
+
+  goToDrawer(text){
+    
+    this.redirectTo(text)
+  }
+
+  toggleDrawer(){
+    console.log("toggle drawer")
+    this.setState({drawerIsOpen:! this.state.drawerIsOpen})
+    console.log("set to " + this.state.drawerIsOpen)
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    let pathname = window.location.pathname;
+
+    console.log("links" + this.state.links)
+
+    var drawers = this.state.links.map((text, index) => (
+      <div key={index}>
+        <Link className="drawerLink" to={"/" + text}>
+          <ListItem button key={text}>
+          {text}
+          </ListItem>
+        </Link>
+        
+      </div>));
+
+    return ( //
+        <div className="App">
+          <MuiThemeProvider theme={theme}>
+            <SnackbarProvider maxSnack={3}>
+              <div>
+
+              <Drawer open={this.state.drawerIsOpen} onClose={this.toggleDrawer}>
+                <img onClick={this.toggleDrawer} src = {logo} className = "App-logo" alt = "logo" />
+                <div
+                  tabIndex={0}
+                  role="button"
+                  onClick={this.toggleDrawer}
+                  onKeyDown={this.toggleDrawer}
+                >
+                  <List>
+                    {
+                      drawers
+                    }
+                  </List>
+                </div>
+              </Drawer>
+              <Header drawerOpenClickHandler={this.toggleDrawer}></Header> 
+              
+              <Main></Main>
+            </div>
+            </SnackbarProvider>
+          </MuiThemeProvider>
+        </div>);
   }
 }
 
