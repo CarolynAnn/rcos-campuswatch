@@ -14,7 +14,7 @@ import theme from './theme'
 import './App.css'
 
 
-const App = observer(class App extends Component {
+class App extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -83,6 +83,6 @@ const App = observer(class App extends Component {
           </MuiThemeProvider>
         </div>);
   }
-})
+}
 
 export default App;

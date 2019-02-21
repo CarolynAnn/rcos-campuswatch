@@ -59,9 +59,9 @@ class Login extends Component {
         <div className="portalContainer">
           <div className="portal">
             <h1>Login</h1>
-            <TextField className="autofillOverride" id="name" label="Email"  type="text" onChange={this.handleUsernameChange}/>
+            <TextField className="autofillOverride" id="name" label="Email"  type="text" defaultValue={this.props.userStore.userInfo.username} onChange={this.handleUsernameChange}/>
             <br/>
-            <TextField className="autofillOverride" id="password" label="Password" type="password"   onChange={this.handlePasswordChange}/>
+            <TextField className="autofillOverride" id="password" label="Password" type="password" defaultValue={this.props.userStore.userInfo.password}   onChange={this.handlePasswordChange}/>
             <br/>
             <Button id="loginButton" variant="outlined" onClick={this.handleLogin}>Log In</Button>
             <p>Don't have an account... <Link to="/register">Register</Link></p>

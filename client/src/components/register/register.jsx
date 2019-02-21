@@ -80,9 +80,9 @@ class Register extends Component {
       <div className="portalContainer">
       <div className="portal">
         <h1>Register</h1>
-        <TextField id="name" label="Email"  type="text" onChange={this.handleUsernameChange}/>
+        <TextField id="name" label="Email"  type="text"  defaultValue={this.props.userStore.userInfo.username} onChange={this.handleUsernameChange}/>
         <br/>
-        <TextField id="password" label="Password" type="password"  onChange={this.handlePasswordChange}/>
+        <TextField id="password" label="Password" type="password" defaultValue={this.props.userStore.userInfo.password} onChange={this.handlePasswordChange}/>
         <br/>
         <TextField id="confirmpassword" label="Confirm Password" type="password" onChange={this.handleConfirmPasswordChange}/>
         <br/>
