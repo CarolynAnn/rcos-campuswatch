@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {MuiThemeProvider} from '@material-ui/core/styles';
+import {observer} from 'mobx-react'
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,6 +12,7 @@ import Main from './main'
 import Header from './components/header/header'
 import theme from './theme'
 import './App.css'
+
 
 class App extends Component {
   constructor(props){
@@ -75,7 +77,7 @@ class App extends Component {
               </Drawer>
               <Header drawerOpenClickHandler={this.toggleDrawer}></Header> 
               
-              <Main></Main>
+              <Main userStore={this.props.userStore}></Main>
             </div>
             </SnackbarProvider>
           </MuiThemeProvider>
