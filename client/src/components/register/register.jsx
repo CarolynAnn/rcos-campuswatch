@@ -10,8 +10,6 @@ class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: '',
       confirmpassword: '',
       passwordsmatch:true,
       username_invalid:false,
@@ -49,14 +47,10 @@ class Register extends Component {
 
   }
   handleUsernameChange(event){
-    this.setState({
-      username:event.target.value
-    })
+    this.props.userStore.userInfo.username = event.target.value
   }
   handlePasswordChange(event){
-    this.setState({
-      password: event.target.value
-    })
+    this.props.userStore.userInfo.password = event.target.value
   }
   handleConfirmPasswordChange(event){
     this.setState({
@@ -88,7 +82,7 @@ class Register extends Component {
         <h1>Register</h1>
         <TextField id="name" label="Email"  type="text" onChange={this.handleUsernameChange}/>
         <br/>
-        <TextField id="password" label="Password" type="password" onChange={this.handlePasswordChange}/>
+        <TextField id="password" label="Password" type="password"  onChange={this.handlePasswordChange}/>
         <br/>
         <TextField id="confirmpassword" label="Confirm Password" type="password" onChange={this.handleConfirmPasswordChange}/>
         <br/>

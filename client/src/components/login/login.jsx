@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, ValidateEmail} from '../../services/util/util';
 
@@ -10,8 +10,6 @@ class Login extends Component {
     super(props)
     
     this.state = {
-      username: "",
-      password: "",
       redirect:false
     }
   
@@ -35,14 +33,10 @@ class Login extends Component {
 
   }
   handleUsernameChange(event){
-    this.setState({
-      username:event.target.value
-    })
+    this.props.userStore.userInfo.username = event.target.value
   }
   handlePasswordChange(event){
-    this.setState({
-      password: event.target.value
-    })
+    this.props.userStore.userInfo.password = event.target.value
   }
   
   componentDidMount(){
@@ -59,14 +53,15 @@ class Login extends Component {
     });
   }
   render() {
+    console.log(this.props)
     return (
       <div className = "Login" id="loginForm">
         <div className="portalContainer">
           <div className="portal">
             <h1>Login</h1>
-            <TextField className="autofillOverride" id="name" label="Email" defaultValue={this.state.username} type="text" onChange={this.handleUsernameChange}/>
+            <TextField className="autofillOverride" id="name" label="Email"  type="text" onChange={this.handleUsernameChange}/>
             <br/>
-            <TextField className="autofillOverride" id="password" label="Password" type="password" defaultValue={this.state.password}  onChange={this.handlePasswordChange}/>
+            <TextField className="autofillOverride" id="password" label="Password" type="password"   onChange={this.handlePasswordChange}/>
             <br/>
             <Button id="loginButton" variant="outlined" onClick={this.handleLogin}>Log In</Button>
             <p>Don't have an account... <Link to="/register">Register</Link></p>
@@ -75,4 +70,4 @@ class Login extends Component {
     }
   }
 
-  export default withSnackbar(Login);
+  export default withRouter(withSnackbar(Login));
