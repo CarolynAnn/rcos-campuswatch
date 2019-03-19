@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom'
 import userStore from './stores/userStore'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(<BrowserRouter><App userStore = {userStore}/></BrowserRouter> ,document.getElementById('root'));
 

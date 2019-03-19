@@ -4,7 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import {Link, withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import { redirectTo, ValidateEmail } from '../../services/util/util';
-
+import 'bootstrap/dist/css/bootstrap.css';
+import './register.css'
+import {Card, CardContent, CardActions } from '@material-ui/core';
 
 class Register extends Component {
   constructor(props) {
@@ -19,6 +21,10 @@ class Register extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this)
+    this.handleFirstChange = this.handleFirstChange.bind(this)
+    this.handleLastChange = this.handleLastChange.bind(this)
+    this.handleAddressChange = this.handleAddressChange.bind(this)
+
     this.redirectTo = redirectTo.bind(this)
     this.handleRegister = this.handleRegister.bind(this)
 
@@ -30,32 +36,33 @@ class Register extends Component {
       return;
     }
 
-    if (!ValidateEmail(this.state.username)){
-      enqueueSnackbar("Invalid email address");
-      document.getElementById("name").focus();
-      return;
-    }
-
-    this.setState({
-      username_invalid:false,
-      password_invalid:false,
-    })
-
-    console.log("registering");
-  
     enqueueSnackbar("registered")
 
   }
   handleUsernameChange(event){
     this.props.userStore.userInfo.username = event.target.value
   }
+
+  handleFirstChange(event){
+    this.props.userStore.userInfo.first = event.target.value
+  }
+
+  handleLastChange(event){
+    this.props.userStore.userInfo.last = event.target.value
+  }
+
+  handleAddressChange(event){
+    this.props.userStore.userInfo.address = event.target.value
+  }
+
   handlePasswordChange(event){
     this.props.userStore.userInfo.password = event.target.value
   }
+
   handleConfirmPasswordChange(event){
     this.setState({
       confirmpassword: event.target.value,
-      passwordsmatch: this.state.password === event.target.value
+      passwordsmatch: this.props.userStore.userInfo.password === event.target.value
     })
 
   }
@@ -76,21 +83,28 @@ class Register extends Component {
 
   render() {
     return (
-      <div className = "Register" id = "registerForm" >
-      <div className="portalContainer">
-      <div className="portal">
+      <Card className = "loginBox" id = "registerForm" >
+        <CardContent className="cardContent">
         <h1>Register</h1>
-        <TextField id="name" label="Email"  type="text"  defaultValue={this.props.userStore.userInfo.username} onChange={this.handleUsernameChange}/>
+        <TextField className="cardContent" id="rcs" label="RCS ID"  type="text"  defaultValue={this.props.userStore.userInfo.username} onChange={this.handleUsernameChange}/>
         <br/>
-        <TextField id="password" label="Password" type="password" defaultValue={this.props.userStore.userInfo.password} onChange={this.handlePasswordChange}/>
+        <TextField className="cardContent" id="first" label="First Name"  type="text"  defaultValue={this.props.userStore.userInfo.first} onChange={this.handleFirstChange}/>
         <br/>
-        <TextField id="confirmpassword" label="Confirm Password" type="password" onChange={this.handleConfirmPasswordChange}/>
+        <TextField className="cardContent" id="last" label="Last Name"  type="text"  defaultValue={this.props.userStore.userInfo.last} onChange={this.handleLastChange}/>
         <br/>
-        <Button variant="outlined" id="registerButton" onClick={this.handleRegister}>Register</Button>
-        <p>Already have an account... <Link to="/login">Log In</Link></p>
+        <TextField className="cardContent" id="address" label="Street Address"  type="text"  defaultValue={this.props.userStore.userInfo.address} onChange={this.handleAddressChange}/>
+        <br/>
+        <TextField className="cardContent" id="password" label="Password" type="password" defaultValue={this.props.userStore.userInfo.password} onChange={this.handlePasswordChange}/>
+        <br/>
+        <TextField className="cardContent" id="confirmpassword" label="Confirm Password" type="password" onChange={this.handleConfirmPasswordChange}/>
+        <br/>
+        </CardContent>
+        <CardActions>
+        <Button className="cardContent" variant="outlined" id="registerButton" onClick={this.handleRegister}>Register</Button>
+        </CardActions>
+        <p className="cardContent">Already have an account... <Link to="/login">Log In</Link></p>
 
-      </div>
-    </div> </div>);
+      </Card>);
     }
   }
 

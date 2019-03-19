@@ -10,7 +10,6 @@ import {redirectTo} from './services/util/util'
 import {logo} from './logo.svg'
 import Main from './main'
 import Header from './components/header/header'
-import theme from './theme'
 import './App.css'
 
 
@@ -19,7 +18,7 @@ class App extends Component {
     super(props);
     this.state = {
       drawerIsOpen:false,
-      links:[ 'login', 'register']
+      links:[ 'login', 'register', 'home']
     }
     this.toggleDrawer = this.toggleDrawer.bind(this);
   
@@ -56,7 +55,7 @@ class App extends Component {
 
     return ( //
         <div className="App">
-          <MuiThemeProvider theme={theme}>
+          
             <SnackbarProvider maxSnack={3}>
               <div>
 
@@ -80,7 +79,7 @@ class App extends Component {
               <Main userStore={this.props.userStore}></Main>
             </div>
             </SnackbarProvider>
-          </MuiThemeProvider>
+          
         </div>);
   }
 }
