@@ -8,8 +8,8 @@ import {withRouter, Link} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, ValidateEmail} from '../../services/util/util';
 import './login.css'
-
-
+var  userData = require('../../data/users.json');
+var groups = require('../../data/groups.json');
 
 class Login extends Component {
   constructor(props) {
@@ -29,6 +29,9 @@ class Login extends Component {
 
     const { enqueueSnackbar } = this.props;
     enqueueSnackbar("logged in");
+    this.props.userStore.userInfo = userData.users[0];
+    this.props.userStore.groups = groups.groups;
+    this.redirectTo('home');
 
   }
   handleUsernameChange(event){
@@ -63,7 +66,7 @@ class Login extends Component {
       <Card className="loginBox" id="loginForm">
       
         <CardContent className="cardContent">
-            <h1>Login</h1>
+            <h1>Campus Watch</h1>
             <TextField className="autofillOverride cardContent" id="rcs" label="RCS ID"  type="text" defaultValue={this.props.userStore.userInfo.username} onChange={this.handleUsernameChange}/>
             <br/>
             <TextField className="autofillOverride cardContent" id="password" label="Password" type="password" defaultValue={this.props.userStore.userInfo.password}   onChange={this.handlePasswordChange}/>

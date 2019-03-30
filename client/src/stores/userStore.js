@@ -1,13 +1,6 @@
 import {observable, action, decorate} from 'mobx'
+var groups = require('../data/groups.json');
 
-// id SERIAL PRIMARY KEY ,
-//     first_name varchar(31) NOT NULL,
-//     last_name varchar(31) NOT NULL,
-//     rcs_id varchar(15) NOT NULL UNIQUE,
-//     password varchar(63) NOT NULL,
-//     address varchar(63) NOT NULL,
-//     picture_location varchar(255),
-//     role_id int NOT NULL
 
 class UserStore {
     
@@ -22,9 +15,12 @@ class UserStore {
 
     };
 
+    groups = groups.groups;
+
 }
 decorate(UserStore, {
-    userInfo: observable
+    userInfo: observable,
+    groups: observable
 })
 
 const userStore = new UserStore();

@@ -133,3 +133,9 @@ nav a.active {
     color:var(--disassembly-text-color);
     text-transform: uppercase;
 }
+
+.pageHeader {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 5%;
+}

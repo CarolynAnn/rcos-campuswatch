@@ -1,0 +1,44 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "first_name": "Nathan",
+            "last_name": "Strelser",
+            "rcs_id": "streln",
+            "password": "a",
+            "address": "1 15th st",
+            "picture_location": null,
+            "role_id": 2
+        },
+        {
+            "id": 2,
+            "first_name": "Carolyn",
+            "last_name": "Zhang",
+            "rcs_id": "zhangc13",
+            "password": "a",
+            "address": "1 14th st",
+            "picture_location": null,
+            "role_id": 1
+        },
+        {
+            "id": 3,
+            "first_name": "Cam",
+            "last_name": "Hackett",
+            "rcs_id": "hackec",
+            "password": "a",
+            "address": "1 delaware st",
+            "picture_location": null,
+            "role_id": 1
+        },
+        {
+            "id": 4,
+            "first_name": "Lucien",
+            "last_name": "Brule",
+            "rcs_id": "brulel",
+            "password": "a",
+            "address": "1 congress st",
+            "picture_location": null,
+            "role_id": 1
+        }
+    ]
+}

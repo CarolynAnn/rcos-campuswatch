@@ -85,7 +85,7 @@ class Register extends Component {
     return (
       <Card className = "loginBox" id = "registerForm" >
         <CardContent className="cardContent">
-        <h1>Register</h1>
+        <h1>Register for Campus Watch</h1>
         <TextField className="cardContent" id="rcs" label="RCS ID"  type="text"  defaultValue={this.props.userStore.userInfo.username} onChange={this.handleUsernameChange}/>
         <br/>
         <TextField className="cardContent" id="first" label="First Name"  type="text"  defaultValue={this.props.userStore.userInfo.first} onChange={this.handleFirstChange}/>

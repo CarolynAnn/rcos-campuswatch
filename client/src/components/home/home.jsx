@@ -1,44 +1,114 @@
 import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import {withRouter, Link} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, ValidateEmail} from '../../services/util/util';
-import 'bootstrap/dist/css/bootstrap.css';
+import { withStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
+import './home.css';
 
+var alerts = require('../../data/alerts.json');
+var groups = require('../../data/groups.json');
 
 class Home extends Component {
   constructor(props) {
     super(props)
     
     this.state = {
-      redirect:false
+      redirect:false,
+      alerts: alerts,
+      groups: groups,
+      expanded: null
     }
   
     this.redirectTo = redirectTo.bind(this);
 
   }
 
+
+  handleChange = panel => (event, expanded) => {
+    this.setState({
+      expanded: expanded ? panel : false,
+    });
+  };
   
   componentDidMount(){
    
   
   }
   render() {
-    console.log(this.props)
+
+    let alertsHTML = this.state.alerts.alerts.map((alert) =>{
+      return <ExpansionPanel key={alert.id} expanded={this.state.expanded === alert.id} onChange={this.handleChange(alert.id)}>
+      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography className="alertHeading">{alert.title}</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+        <Typography>
+          {alert.message}
+        </Typography>
+        <Typography>
+          Posted by: {alert.poster_id}
+        </Typography>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+    });
+
+    let groupsHTML = this.props.userStore.groups.map((group) =>{
+        let to = "/groups/" + group.id;
+        return <ListItem key={group.id} button component={Link} to={to} alignItems="flex-start">
+        
+        <ListItemText
+          primary={group.name}
+          secondary={
+            <React.Fragment>
+              {group.description}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+    });
+
     return (
-      <div className = "Login" id="loginForm">
-        <div className="portalContainer">
-          <div className="portal">
-            <h1>Login</h1>
-            <TextField className="autofillOverride" id="name" label="Email"  type="text" defaultValue={this.props.userStore.userInfo.username} onChange={this.handleUsernameChange}/>
-            <br/>
-            <TextField className="autofillOverride" id="password" label="Password" type="password" defaultValue={this.props.userStore.userInfo.password}   onChange={this.handlePasswordChange}/>
-            <br/>
-            <Button id="loginButton" variant="outlined" onClick={this.handleLogin}>Log In</Button>
-            <p>Don't have an account... <Link to="/register">Register</Link></p>
-          </div>
-        </div> </div>);
+      <div className="container">
+        <div className="pageHeader">
+          Welcome to Campus Watch
+        </div>
+        <Grid direction="row"
+          justify="space-evenly"
+          alignItems="flex-start"
+          container spacing={24}>
+          <Grid item xs={6}>
+            <Paper>
+              <div className="header">
+                Community Alerts
+              </div>
+              <Divider />
+              {alertsHTML}
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper>
+              <div className="header">
+                My Groups
+              </div>
+              <Divider />
+              <List component="nav">
+                {groupsHTML}
+              </List>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>);
     }
   }
 

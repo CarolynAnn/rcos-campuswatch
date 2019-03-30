@@ -1,0 +1,25 @@
+{
+    "groups": [
+        {
+            "id" : 1,
+            "name" : "South Campus Community",
+            "description": "Students who live between 8th st and 15th st on the south side of campus until congress st"
+        },
+        {
+            "id" : 2,
+            "name" : "North Campus Community",
+            "description": "Students who live between 8th st and 15th st on the north side of campus between sage ave and hoosick st"
+        },
+        {
+            "id" : 3,
+            "name" : "Pawling Ave",
+            "description": "Students who live in the Pawling Ave area"
+        },
+        {
+            "id" : 4,
+            "name" : "Downtown Community",
+            "description": "A group for students who live in downtown troy"
+        }
+
+    ]
+}
