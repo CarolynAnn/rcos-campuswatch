@@ -1,23 +1,26 @@
 import {observable, action, decorate} from 'mobx'
+var groups = require('../data/groups.json');
+
 
 class UserStore {
     
     userInfo = {
         id: null,
         username: "",
-        password: ""
+        first: "",
+        last: "",
+        address: "",
+        password: "",
+
+
     };
 
-    constructor() {
-        this.userInfo = {
-            id: null,
-            username: "nate",
-            password: "abc"
-        }
-    }
+    groups = groups.groups;
+
 }
 decorate(UserStore, {
-    userInfo: observable
+    userInfo: observable,
+    groups: observable
 })
 
 const userStore = new UserStore();

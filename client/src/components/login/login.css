@@ -1,0 +1,19 @@
+.loginBox {
+    width: 40%;
+    padding: auto;
+    margin: auto;
+    margin-top: 15%;
+}
+
+#loginForm {
+    background-color: rgb(250,250,250,0.9)
+}
+
+.cardContent{
+    width: 100%;
+    text-align: center;
+}
+
+#loginButton {
+    background-color: var(--app-color-primary)
+}

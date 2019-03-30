@@ -1,0 +1,44 @@
+{
+    "alerts": [
+        {
+            "id": 1,
+            "title": "Severe weather expected this afternoon",
+            "message": "A massive snowstorm is headed towards troy New York this weekend. Be prepared to bundle up and continue to check to see if classes are cancelled",
+            "poster_id": 1,
+            "group_id": 0,
+            "posted": 1
+        },
+        {
+            "id": 2,
+            "title": "Severe weather expected this afternoon",
+            "message": "A massive snowstorm is headed towards troy New York this weekend. Be prepared to bundle up and continue to check to see if classes are cancelled",
+            "poster_id": 1,
+            "group_id": 1,
+            "posted": 2
+        },
+        {
+            "id": 3,
+            "title": "Severe weather expected this afternoon",
+            "message": "A massive snowstorm is headed towards troy New York this weekend. Be prepared to bundle up and continue to check to see if classes are cancelled",
+            "poster_id": 2,
+            "group_id": 2,
+            "posted": 3
+        },
+        {
+            "id": 4,
+            "title": "Severe weather expected this afternoon",
+            "message": "A massive snowstorm is headed towards troy New York this weekend. Be prepared to bundle up and continue to check to see if classes are cancelled",
+            "poster_id": 1,
+            "group_id": 0,
+            "posted": 4
+        },
+        {
+            "id": 5,
+            "title": "14th Street construction",
+            "message": "14th st between college ave and congress st will be closed this afternnon from 2pm to 8pm due to construction",
+            "poster_id": 1,
+            "group_id": 1,
+            "posted": 5
+        }
+    ]
+}
