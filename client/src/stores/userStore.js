@@ -16,11 +16,12 @@ class UserStore {
     };
 
     groups = groups.groups;
-
+    allGroups = groups.groups;
 }
 decorate(UserStore, {
     userInfo: observable,
-    groups: observable
+    groups: observable,
+    allGroups: observable
 })
 
 const userStore = new UserStore();
