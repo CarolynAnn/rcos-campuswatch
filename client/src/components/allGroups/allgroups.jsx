@@ -4,22 +4,31 @@ import { withSnackbar } from 'notistack';
 import {redirectTo, } from '../../services/util/util';
 import List from '@material-ui/core/List';
 import Group from '../group/group';
-import Alert from '../alert/alert';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import './home.css';
+import Icon from '@material-ui/core/Icon';
+import './allgroups.css';
+import red from '@material-ui/core/colors/red';
+import AddCircle from '@material-ui/icons/AddCircle';
 
-var alerts = require('../../data/alerts.json');
 var groups = require('../../data/groups.json');
 
-class Home extends Component {
+const styles = {
+    iconHover: {
+      
+      '&:hover': {
+        color: red[800],
+      },
+    },
+  };
+
+class AllGroups extends Component {
   constructor(props) {
     super(props)
     
     this.state = {
       redirect:false,
-      alerts: alerts,
       groups: groups,
       expanded: null
     }
@@ -41,37 +50,31 @@ class Home extends Component {
   }
   render() {
 
-    let alertsHTML = this.state.alerts.alerts.map((alert) =>{
-      return <Alert key={alert.id}  onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
-    });
-
-    let groupsHTML = this.props.userStore.groups.map((group) =>{
+    
+    let groupsHTML = this.props.userStore.allGroups.map((group) =>{
         return <Group key={group.id} group= {group} />      
     });
 
     return (
       <div className="container">
         <div className="pageHeader">
-          Welcome to Campus Watch
+          Find a Group to Join
         </div>
         <Grid direction="row"
           justify="space-evenly"
           alignItems="flex-start"
           container spacing={24}>
-          <Grid item xs={6}>
+          
+          <Grid item xs={12}>
             <Paper>
               <div className="header">
-                Community Alerts
+                All Groups
+                <div className="right">
+                    <AddCircle/>    
+                </div>
               </div>
-              <Divider />
-              {alertsHTML}
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper>
-              <div className="header">
-                My Groups
-              </div>
+
+                
               <Divider />
               <List component="nav">
                 {groupsHTML}
@@ -83,4 +86,4 @@ class Home extends Component {
     }
   }
 
-  export default withRouter(withSnackbar(Home));
+  export default withRouter(withSnackbar(AllGroups));
