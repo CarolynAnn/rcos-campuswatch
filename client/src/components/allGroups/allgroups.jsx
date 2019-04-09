@@ -7,7 +7,7 @@ import Group from '../group/group';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import Icon from '@material-ui/core/Icon';
+import CreateGroup from '../creategroup/creategroup'
 import './allgroups.css';
 import red from '@material-ui/core/colors/red';
 import AddCircle from '@material-ui/icons/AddCircle';
@@ -30,19 +30,23 @@ class AllGroups extends Component {
     this.state = {
       redirect:false,
       groups: groups,
-      expanded: null
+      expanded: null,
+      open: false
     }
   
     this.redirectTo = redirectTo.bind(this);
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
 
   }
-
-
-  handleChange = panel => (event, expanded) => {
-    this.setState({
-      expanded: expanded ? panel : false,
-    });
+  handleClickOpen = () => {
+    this.setState({ open: true });
   };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   
   componentDidMount(){
    
@@ -70,7 +74,7 @@ class AllGroups extends Component {
               <div className="header">
                 All Groups
                 <div className="right">
-                    <AddCircle/>    
+                    <AddCircle onClick={this.handleClickOpen}/>    
                 </div>
               </div>
 
@@ -82,6 +86,7 @@ class AllGroups extends Component {
             </Paper>
           </Grid>
         </Grid>
+        <CreateGroup handleClose = {this.handleClose} open = {this.state.open}/>
       </div>);
     }
   }
