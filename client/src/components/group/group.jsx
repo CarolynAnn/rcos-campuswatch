@@ -10,7 +10,6 @@ class Group extends Component {
   
     render() {
         let group = this.props.group;
-
         let to = "/groups/" + group.id;
         return <ListItem  button component={Link} to={to} alignItems="flex-start">
         
@@ -23,9 +22,7 @@ class Group extends Component {
             }
         />
         </ListItem>
-
     }
-
 }
 
 export default Group;

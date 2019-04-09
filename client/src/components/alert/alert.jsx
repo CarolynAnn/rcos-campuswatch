@@ -13,8 +13,6 @@ class Alert extends Component {
      
     }
 
-    
-
     render() {
         let alert= this.props.alert;
 

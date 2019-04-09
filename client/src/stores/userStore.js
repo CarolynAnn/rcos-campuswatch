@@ -11,8 +11,6 @@ class UserStore {
         last: "",
         address: "",
         password: "",
-
-
     };
 
     groups = groups.groups;
