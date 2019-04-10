@@ -18,7 +18,7 @@ class App extends Component {
     super(props);
     this.state = {
       drawerIsOpen:false,
-      links:[ 'login', 'register', 'home']
+      links:[ 'login', 'register', 'home', 'allgroups']
     }
     this.toggleDrawer = this.toggleDrawer.bind(this);
   
