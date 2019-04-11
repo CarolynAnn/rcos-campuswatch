@@ -24,7 +24,13 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto+Mono');
 main {
   height: 100%;
+ 
 }
+
+.App {
+  overflow: scroll;
+}
+
 .userProfile{
   margin-right: 20px;
   color:var(--title-color) !important;

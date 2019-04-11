@@ -1,0 +1,152 @@
+{
+    "discussions": [
+        {
+            "id" : 1,
+            "title": "Test post 1",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 1,
+            "poster_id": 1,
+            "posted": 1555018745617
+        },
+        {
+            "id" : 2,
+            "title": "Test post 2",
+            "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat sollicitudin ante eget pulvinar. Aliquam volutpat nisi cursus, bibendum leo ac, mollis risus. Etiam mattis gravida nisl a eleifend. Donec imperdiet tincidunt tortor, vitae ultricies felis accumsan non. Phasellus tempus egestas dignissim. Pellentesque molestie euismod dignissim. ",
+            "group_id": 1,
+            "poster_id": 2,
+            "posted": 1555018705617
+        },
+        {
+            "id" : 3,
+            "title": "Test post 3",
+            "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat sollicitudin ante eget pulvinar. Aliquam volutpat nisi cursus, bibendum leo ac, mollis risus. Etiam mattis gravida nisl a eleifend. Donec imperdiet tincidunt tortor, vitae ultricies felis accumsan non. Phasellus tempus egestas dignissim. Pellentesque molestie euismod dignissim.  openery I can borrow.",
+            "group_id": 1,
+            "poster_id": 3,
+            "posted": 1555018740617
+        }
+        ,
+        {
+            "id" : 4,
+            "title": "Test post 4",
+            "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat sollicitudin ante eget pulvinar. Aliquam volutpat nisi cursus, bibendum leo ac, mollis risus. Etiam mattis gravida nisl a eleifend. Donec imperdiet tincidunt tortor, vitae ultricies felis accumsan non. Phasellus tempus egestas dignissim. Pellentesque molestie euismod dignissim.  openery I can borrow.",
+            "group_id": 1,
+            "poster_id": 4,
+            "posted": 1555018745017
+        }
+        ,
+        {
+            "id" : 5,
+            "title": "Test post 5",
+            "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat sollicitudin ante eget pulvinar. Aliquam volutpat nisi cursus, bibendum leo ac, mollis risus. Etiam mattis gravida nisl a eleifend. Donec imperdiet tincidunt tortor, vitae ultricies felis accumsan non. Phasellus tempus egestas dignissim. Pellentesque molestie euismod dignissim.  openery I can borrow.",
+            "group_id": 2,
+            "poster_id": 1,
+            "posted": 1555017745617
+        },
+        {
+            "id" : 6,
+            "title": "Test post 6",
+            "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat sollicitudin ante eget pulvinar. Aliquam volutpat nisi cursus, bibendum leo ac, mollis risus. Etiam mattis gravida nisl a eleifend. Donec imperdiet tincidunt tortor, vitae ultricies felis accumsan non. Phasellus tempus egestas dignissim. Pellentesque molestie euismod dignissim.  openery I can borrow.",
+            "group_id": 2,
+            "poster_id": 2,
+            "posted": 1555018742617
+        },
+        {
+            "id" : 7,
+            "title": "Test post 7",
+            "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat sollicitudin ante eget pulvinar. Aliquam volutpat nisi cursus, bibendum leo ac, mollis risus. Etiam mattis gravida nisl a eleifend. Donec imperdiet tincidunt tortor, vitae ultricies felis accumsan non. Phasellus tempus egestas dignissim. Pellentesque molestie euismod dignissim.  openery I can borrow.",
+            "group_id": 2,
+            "poster_id": 3,
+            "posted": 1555018745217
+        },
+        {
+            "id" : 8,
+            "title": "Test post 8",
+            "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat sollicitudin ante eget pulvinar. Aliquam volutpat nisi cursus, bibendum leo ac, mollis risus. Etiam mattis gravida nisl a eleifend. Donec imperdiet tincidunt tortor, vitae ultricies felis accumsan non. Phasellus tempus egestas dignissim. Pellentesque molestie euismod dignissim.  openery I can borrow.",
+            "group_id": 2,
+            "poster_id": 4,
+            "posted": 1555018745607
+        },
+        {
+            "id" : 9,
+            "title": "Test post 9",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 3,
+            "poster_id": 1,
+            "posted": 1555017745617
+        },
+        {
+            "id" : 10,
+            "title": "Test post 10",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 3,
+            "poster_id": 2,
+            "posted": 1555018742617
+        },
+        {
+            "id" : 11,
+            "title": "Test post 11",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 3,
+            "poster_id": 3,
+            "posted": 1555018745217
+        },
+        {
+            "id" : 12,
+            "title": "Test post 12",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 3,
+            "poster_id": 4,
+            "posted": 1555018745607
+        },
+        {
+            "id" : 13,
+            "title": "Test post 13",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 4,
+            "poster_id": 1,
+            "posted": 1555017745617
+        },
+        {
+            "id" : 14,
+            "title": "Test post 14",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 4,
+            "poster_id": 2,
+            "posted": 1555018742617
+        },
+        {
+            "id" : 15,
+            "title": "Test post 15",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 4,
+            "poster_id": 3,
+            "posted": 1555018745217
+        },
+        {
+            "id" : 16,
+            "title": "Test post 16",
+            "message": "Hi guys! I was wondering if anyone has a can openery I can borrow.",
+            "group_id": 4,
+            "poster_id": 4,
+            "posted": 1555018745607
+        }
+    ],
+    "replies": [
+        {
+            "id": 1,
+            "message": "I have one! message me and we can meet up!",
+            "discussion_id": 1,
+            "poster_id": 2,
+            "posted": 1555018749617
+        },
+        {
+            "id": 3,
+            "message": "Thanks! Sending you a message now",
+            "discussion_id": 1,
+            "poster_id": 1,
+            "posted": 1555018751617
+        }
+
+
+    ]
+}

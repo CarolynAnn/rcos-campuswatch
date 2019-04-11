@@ -5,7 +5,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, {Component} from 'react';
-
+import './alert.css'
 
 class Alert extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class Alert extends Component {
     render() {
         let alert= this.props.alert;
 
-        return <ExpansionPanel expanded={this.props.expanded} onChange={this.props.onchange(alert.id)}>
+        return <ExpansionPanel  expanded={this.props.expanded} onChange={this.props.onchange(alert.id)}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="alertHeading">{alert.title}</Typography>
         </ExpansionPanelSummary>
