@@ -1,0 +1,9 @@
+.alertHeading {
+    font-size: 1.1em !important;
+    font-weight: bold !important;
+}
+
+.alertPoster {
+    margin-bottom: 2%;
+    font-size: 0.9em;
+}

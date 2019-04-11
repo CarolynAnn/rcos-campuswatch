@@ -1,0 +1,19 @@
+.discussionHeading {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    margin-bottom: 1% !important;
+}
+
+.discussionPoster {
+    margin-bottom: 2% ;
+    font-size: 0.75em !important;
+    color: rgba(0,0,0,0.6)
+}
+
+.discussionPanel {
+    margin-bottom: 2%;
+}
+
+.replyDiv {
+    margin-top: 2% !important;
+}

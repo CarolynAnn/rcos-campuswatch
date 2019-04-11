@@ -3,16 +3,15 @@ import {withRouter, Link} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, } from '../../services/util/util';
 import List from '@material-ui/core/List';
-import Group from '../group/group';
 import Alert from '../alert/alert';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
+import Discussion from '../discussion/discussion'
 //import './home.css';
 
 var alerts = require('../../data/alerts.json');
-var groups = require('../../data/groups.json');
-
+var discussions = require('../../data/discussions.json');
 class GroupHome extends Component {
   constructor(props) {
     super(props)
@@ -23,8 +22,9 @@ class GroupHome extends Component {
       id: splitUrl[splitUrl.length - 1], 
       redirect:false,
       alerts: alerts,
-      groups: groups,
-      expanded: null
+      discussions: discussions,
+      expanded: null,
+      expandedDiscussion: null
     }
   
     this.redirectTo = redirectTo.bind(this);
@@ -35,6 +35,12 @@ class GroupHome extends Component {
   handleChange = panel => (event, expanded) => {
     this.setState({
       expanded: expanded ? panel : false,
+    });
+  };
+
+  handleChangeDiscussion = panel => (event, expanded) => {
+    this.setState({
+      expandedDiscussion: expanded ? panel : false,
     });
   };
   
@@ -48,10 +54,17 @@ class GroupHome extends Component {
       return <Alert key={alert.id}  onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
     });
 
-    let groupsHTML = this.props.userStore.groups.map((group) =>{
-        return <Group key={group.id} group= {group} />      
+    let discussionHTML = this.state.discussions.discussions.sort((a,b)=>{
+       return a.posted < b.posted
+    }).
+    map((discussion) =>{
+        if (discussion.group_id == this.state.id){
+            let replies = this.state.discussions.replies;
+            return <Discussion key={discussion.id} replies={replies} onchange={this.handleChangeDiscussion} expanded={this.state.expandedDiscussion === discussion.id} discussion= {discussion} />      
+        }
+        return null
     });
-
+    
     return (
       <div className="container">
         <div className="pageHeader">
@@ -60,11 +73,11 @@ class GroupHome extends Component {
         <Grid direction="row"
           justify="space-evenly"
           alignItems="flex-start"
-          container spacing={24}>
+          container spacing={16}>
           <Grid item xs={6}>
             <Paper>
               <div className="header">
-                Community Alerts
+                Group Alerts
               </div>
               <Divider />
               {alertsHTML}
@@ -73,12 +86,11 @@ class GroupHome extends Component {
           <Grid item xs={6}>
             <Paper>
               <div className="header">
-                My Groups
+                Discussions
               </div>
               <Divider />
-              <List component="nav">
-                {groupsHTML}
-              </List>
+                {discussionHTML}
+              
             </Paper>
           </Grid>
         </Grid>
