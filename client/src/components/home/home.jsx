@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import './home.css';
+import AddCircle from '@material-ui/icons/AddCircle';
+import CreatePost from '../createpost/createpost'
 
 var alerts = require('../../data/alerts.json');
 var groups = require('../../data/groups.json');
@@ -27,6 +29,16 @@ class Home extends Component {
     this.redirectTo = redirectTo.bind(this);
 
   }
+
+  handleClickOpen = () => {
+    this.setState({ open: true, alertOpen: false });
+  };
+
+  
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
 
   handleChange = panel => (event, expanded) => {
@@ -62,6 +74,9 @@ class Home extends Component {
             <Paper>
               <div className="header">
                 Community Alerts
+                <div className="right">
+                    <AddCircle onClick={this.handleClickOpen}/>    
+                </div>
               </div>
               <Divider />
               {alertsHTML}
@@ -79,6 +94,7 @@ class Home extends Component {
             </Paper>
           </Grid>
         </Grid>
+        <CreatePost handleClose = {this.handleClose} alert={true} open = {this.state.open}/>
       </div>);
     }
   }
