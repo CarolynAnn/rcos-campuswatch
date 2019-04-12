@@ -11,6 +11,7 @@ import CreateGroup from '../creategroup/creategroup'
 import './allgroups.css';
 import red from '@material-ui/core/colors/red';
 import AddCircle from '@material-ui/icons/AddCircle';
+import {observer} from 'mobx-react'
 
 var groups = require('../../data/groups.json');
 
@@ -91,4 +92,4 @@ class AllGroups extends Component {
     }
   }
 
-  export default withRouter(withSnackbar(AllGroups));
+  export default  observer(withRouter(withSnackbar(AllGroups)));

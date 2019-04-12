@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import {withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo} from '../../services/util/util';
+import {observer} from 'mobx-react'
 
 class Header extends Component {
   constructor(props){
@@ -49,4 +50,4 @@ class Header extends Component {
 }
 
 
-export default withRouter(withSnackbar(Header))
+export default  observer(withRouter(withSnackbar(Header)))

@@ -8,6 +8,7 @@ import {withRouter, Link} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, ValidateEmail} from '../../services/util/util';
 import './login.css'
+import {observer} from 'mobx-react'
 var  userData = require('../../data/users.json');
 var groups = require('../../data/groups.json');
 
@@ -30,7 +31,7 @@ class Login extends Component {
     const { enqueueSnackbar } = this.props;
     enqueueSnackbar("logged in");
     this.props.userStore.userInfo = userData.users[0];
-    this.props.userStore.groups = groups.groups;
+    this.props.userStore.loggedIn = true;
     this.redirectTo('home');
 
   }
@@ -81,4 +82,4 @@ class Login extends Component {
     }
   }
 
-  export default withRouter(withSnackbar(Login));
+  export default  observer(withRouter(withSnackbar(Login)));

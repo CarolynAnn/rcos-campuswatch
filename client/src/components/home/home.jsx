@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import './home.css';
 import AddCircle from '@material-ui/icons/AddCircle';
 import CreatePost from '../createpost/createpost'
+import {observer} from 'mobx-react'
 
 var alerts = require('../../data/alerts.json');
 var groups = require('../../data/groups.json');
@@ -23,7 +24,8 @@ class Home extends Component {
       redirect:false,
       alerts: alerts,
       groups: groups,
-      expanded: null
+      expanded: null,
+      open: false
     }
   
     this.redirectTo = redirectTo.bind(this);
@@ -54,7 +56,7 @@ class Home extends Component {
   render() {
 
     let alertsHTML = this.state.alerts.alerts.map((alert) =>{
-      return <Alert key={alert.id}  onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
+      return <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
     });
 
     let groupsHTML = this.props.userStore.groups.map((group) =>{
@@ -99,4 +101,4 @@ class Home extends Component {
     }
   }
 
-  export default withRouter(withSnackbar(Home));
+  export default  withRouter(withSnackbar(Home));

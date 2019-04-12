@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Discussion from '../discussion/discussion'
+import {observer} from 'mobx-react'
 //import './home.css';
 
 import AddCircle from '@material-ui/icons/AddCircle';
@@ -67,7 +68,7 @@ class GroupHome extends Component {
   render() {
 
     let alertsHTML = this.state.alerts.alerts.map((alert) =>{
-      return <Alert key={alert.id}  onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
+      return <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
     });
 
     let discussionHTML = this.state.discussions.discussions.sort((a,b)=>{
@@ -76,7 +77,7 @@ class GroupHome extends Component {
     map((discussion) =>{
         if (discussion.group_id == this.state.id){
             let replies = this.state.discussions.replies;
-            return <Discussion key={discussion.id} replies={replies} onchange={this.handleChangeDiscussion} expanded={this.state.expandedDiscussion === discussion.id} discussion= {discussion} />      
+            return <Discussion key={discussion.id} userStore ={this.props.userStore} replies={replies} onchange={this.handleChangeDiscussion} expanded={this.state.expandedDiscussion === discussion.id} discussion= {discussion} />      
         }
         return null
     });
@@ -121,4 +122,4 @@ class GroupHome extends Component {
     }
   }
 
-  export default withRouter(withSnackbar(GroupHome));
+  export default  observer(withRouter(withSnackbar(GroupHome)));

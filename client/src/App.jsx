@@ -13,12 +13,13 @@ import Header from './components/header/header'
 import './App.css'
 
 
+
 class App extends Component {
   constructor(props){
     super(props);
+    
     this.state = {
-      drawerIsOpen:false,
-      links:[ 'login', 'register', 'home', 'allgroups']
+      drawerIsOpen:false
     }
     this.toggleDrawer = this.toggleDrawer.bind(this);
   
@@ -38,13 +39,22 @@ class App extends Component {
     console.log("set to " + this.state.drawerIsOpen)
   }
 
+  logout(){
+    this.props.userStore.loggedIn = false;
+  }
+
   render() {
+
+    var links =[ 'login', 'register']
     let pathname = window.location.pathname;
+    if (this.props.userStore.loggedIn)
+    {
+      links = [ 'home', 'allgroups', 'user']
+    }
+    console.log("links" + links)
 
-    console.log("links" + this.state.links)
-
-    var drawers = this.state.links.map((text, index) => (
-      <div key={index}>
+    var drawers = links.map((text, index) => (
+       <div key={index}>
         <Link className="drawerLink" to={"/" + text}>
           <ListItem button key={text}>
           {text}
@@ -52,7 +62,17 @@ class App extends Component {
         </Link>
         
       </div>));
-
+    if (this.props.userStore.loggedIn){
+      drawers.push((
+        <div key={4}>
+         <Link className="drawerLink" to='/login' onClick={this.logout}>
+           <ListItem button key={4}>
+            log out
+           </ListItem>
+         </Link>
+         
+       </div>))
+    }
     return ( //
         <div className="App">
           
@@ -84,4 +104,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default (App);

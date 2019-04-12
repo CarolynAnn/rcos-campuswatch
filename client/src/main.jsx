@@ -4,6 +4,7 @@ import Login from './components/login/login'
 import Register from './components/register/register'
 import AllGroups from './components/allGroups/allgroups'
 import Home from './components/home/home'
+import User from './components/user/user'
 import {observer} from 'mobx-react'
 import GroupHome from './components/grouphome/grouphome'
 const Main = (mainProps) => {
@@ -13,7 +14,9 @@ const Main = (mainProps) => {
           <Route path='/login' render={(props) => <Login {...props} userStore={mainProps.userStore}/>}/>
           <Route path='/register' render={(props) => <Register {...props } userStore={mainProps.userStore}/>}/>
           <Route path='/home' render={(props) => <Home {...props } userStore={mainProps.userStore}/>}/>
-          <Route path='/group:id' render={(props) => <GroupHome {...props } userStore={mainProps.userStore}/>}/>
+          <Route path='/groups/:id' render={(props) => <GroupHome {...props } userStore={mainProps.userStore}/>}/>
+          <Route path='/user/:id' render={(props) => <User {...props } userStore={mainProps.userStore}/>}/>
+          <Route path='/user/' render={(props) => <User {...props } userStore={mainProps.userStore}/>}/>
           <Route path='/allgroups' render={(props) => <AllGroups {...props } userStore={mainProps.userStore}/>}/>
           <Redirect to='/login'/>
         </Switch>
