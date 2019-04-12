@@ -28,7 +28,8 @@ class CreateGroup extends Component {
     }
   
     this.redirectTo = redirectTo.bind(this);
-
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.logChange = this.logChange.bind(this)
   }
 
   logChange(e) {
@@ -39,6 +40,18 @@ class CreateGroup extends Component {
     }
   }
   
+  handleSubmit(){
+    let newGroup = {
+      "id": this.props.userStore.groups.length + 1,
+      "name": this.state.name,
+      "description": this.state.description
+    }
+    console.log(newGroup)
+    this.props.userStore.groups.push(newGroup)
+    console.log(this.props.userStore.groups)
+    this.props.handleClose()
+  }
+
   componentDidMount(){
    
   
@@ -69,6 +82,7 @@ class CreateGroup extends Component {
                 label="Name"
                 type="text"
                 fullWidth
+                onChange ={this.logChange}
             />
 
             <TextField
@@ -80,13 +94,14 @@ class CreateGroup extends Component {
                 multiline
                 rows="5"
                 fullWidth
+                onChange ={this.logChange}
             />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={this.props.handleClose} color="primary">
+          <Button onClick={this.handleSubmit} color="primary">
             Create
           </Button>
         </DialogActions>
