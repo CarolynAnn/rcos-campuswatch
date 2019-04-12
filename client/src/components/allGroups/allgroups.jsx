@@ -56,7 +56,7 @@ class AllGroups extends Component {
   render() {
 
     
-    let groupsHTML = this.props.userStore.allGroups.map((group) =>{
+    let groupsHTML = this.props.userStore.groups.map((group) =>{
         return <Group key={group.id} group= {group} />      
     });
 
@@ -87,7 +87,7 @@ class AllGroups extends Component {
             </Paper>
           </Grid>
         </Grid>
-        <CreateGroup handleClose = {this.handleClose} open = {this.state.open}/>
+        <CreateGroup userStore={this.props.userStore} handleClose = {this.handleClose} open = {this.state.open}/>
       </div>);
     }
   }
