@@ -3,6 +3,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import React, {Component} from 'react';
 import {Link, withRouter}from 'react-router-dom';
 
+import {observer} from 'mobx-react'
 class Group extends Component {
     constructor(props) {
       super(props);
@@ -28,4 +29,4 @@ class Group extends Component {
 
 }
 
-export default Group;
+export default  Group;

@@ -12,6 +12,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Divider } from '@material-ui/core';
 import Slide from '@material-ui/core/Slide'
+import {observer} from 'mobx-react'
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -93,4 +94,4 @@ class CreatePost extends Component {
     }
   }
 
-  export default withRouter(withSnackbar(CreatePost));
+  export default  observer(withRouter(withSnackbar(CreatePost)));

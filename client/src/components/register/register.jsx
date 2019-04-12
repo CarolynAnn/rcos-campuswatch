@@ -7,6 +7,7 @@ import { redirectTo, ValidateEmail } from '../../services/util/util';
 import 'bootstrap/dist/css/bootstrap.css';
 import './register.css'
 import {Card, CardContent, CardActions } from '@material-ui/core';
+import {observer} from 'mobx-react'
 
 class Register extends Component {
   constructor(props) {
@@ -108,4 +109,4 @@ class Register extends Component {
     }
   }
 
-  export default withRouter(withSnackbar(Register));
+  export default  observer(withRouter(withSnackbar(Register)));

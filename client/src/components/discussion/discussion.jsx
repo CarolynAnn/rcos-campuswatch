@@ -12,6 +12,8 @@ import { Divider } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import Send from '@material-ui/icons/Send';
+import {Link} from 'react-router-dom'
+import {observer} from 'mobx-react'
 class Discussion extends Component {
     constructor(props) {
       super(props)
@@ -29,7 +31,7 @@ class Discussion extends Component {
         {
             let color = reply.poster_id == discussion.poster_id ? 'secondary' : 'default';
             
-            return <Grid item><Chip key={reply.id} color={color} label={reply.message} /> </Grid>
+            return <Grid item><Chip component={Link} to={'/user/' + reply.poster_id} key={reply.id} color={color} label={reply.message} /> </Grid>
         });
         return <ExpansionPanel className="discussionPanel" expanded={this.props.expanded} onChange={this.props.onchange(discussion.id)}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -43,7 +45,7 @@ class Discussion extends Component {
                 </Grid>
                 <Grid item xs ={12} className="discussionPoster">
                     <Typography >
-                        Posted by: {discussion.poster_id} on {day} at {t}
+                        Posted by: <Link to= {'/user/' + discussion.poster_id}>{this.props.userStore.users[discussion.poster_id-1].first_name + ' ' + this.props.userStore.users[discussion.poster_id-1].last_name}</Link> on {day} at {t}
                     </Typography>
                 </Grid>
             </Grid>
@@ -68,7 +70,7 @@ class Discussion extends Component {
                 <Divider className="replyDiv"/>
                 <Grid item xs={12} container direction="row" alignItems="center" justify="center">
                     <Grid item xs={10}>
-                        <InputBase fullWidth={true} multiline= {true} rowsMax={4} placeholder="Search Google Maps" />
+                        <InputBase fullWidth={true} multiline= {true} rowsMax={4} placeholder="Reply" />
                     </Grid>
                     <Grid item xs={2} style={{height: "32px"}}>
                     <IconButton  aria-label="Send">
@@ -82,4 +84,4 @@ class Discussion extends Component {
     }
 }
 
-export default Discussion;
+export default  observer(Discussion);

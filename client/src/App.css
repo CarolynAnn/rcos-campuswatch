@@ -108,6 +108,11 @@ nav li {
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
 nav a {
   line-height: 60px;
   font-size: 0.8em;
