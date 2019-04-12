@@ -10,6 +10,9 @@ import Divider from '@material-ui/core/Divider';
 import Discussion from '../discussion/discussion'
 //import './home.css';
 
+import AddCircle from '@material-ui/icons/AddCircle';
+import CreatePost from '../createpost/createpost'
+
 var alerts = require('../../data/alerts.json');
 var discussions = require('../../data/discussions.json');
 class GroupHome extends Component {
@@ -28,8 +31,21 @@ class GroupHome extends Component {
     }
   
     this.redirectTo = redirectTo.bind(this);
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
 
   }
+  handleClickOpen = () => {
+    this.setState({ open: true, alertOpen: false });
+  };
+
+  handleClickOpenAlert = () => {
+    this.setState({ open: true, alertOpen: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
 
   handleChange = panel => (event, expanded) => {
@@ -78,6 +94,9 @@ class GroupHome extends Component {
             <Paper>
               <div className="header">
                 Group Alerts
+                <div className="right">
+                    <AddCircle onClick={this.handleClickOpenAlert}/>    
+                </div>
               </div>
               <Divider />
               {alertsHTML}
@@ -87,6 +106,9 @@ class GroupHome extends Component {
             <Paper>
               <div className="header">
                 Discussions
+                <div className="right">
+                    <AddCircle onClick={this.handleClickOpen}/>    
+                </div>
               </div>
               <Divider />
                 {discussionHTML}
@@ -94,6 +116,7 @@ class GroupHome extends Component {
             </Paper>
           </Grid>
         </Grid>
+        <CreatePost handleClose = {this.handleClose} alert={this.state.alertOpen} open = {this.state.open}/>
       </div>);
     }
   }
