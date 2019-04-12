@@ -55,8 +55,8 @@ class Home extends Component {
   }
   render() {
 
-    let alertsHTML = this.state.alerts.alerts.map((alert) =>{
-      return <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
+    let alertsHTML = this.props.userStore.alerts.map((alert) =>{
+      return alert.group_id == 0 ? <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> : null
     });
 
     let groupsHTML = this.props.userStore.groups.map((group) =>{
@@ -96,7 +96,7 @@ class Home extends Component {
             </Paper>
           </Grid>
         </Grid>
-        <CreatePost handleClose = {this.handleClose} alert={true} open = {this.state.open}/>
+        <CreatePost group_id={0} userStore={this.props.userStore} handleClose = {this.handleClose} alert={true} open = {this.state.open}/>
       </div>);
     }
   }

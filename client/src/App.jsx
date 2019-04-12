@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import {Link} from 'react-router-dom'
 import { SnackbarProvider } from 'notistack';
 import {redirectTo} from './services/util/util'
-import {logo} from './logo.svg'
+import {logo} from './logo.png'
 import Main from './main'
 import Header from './components/header/header'
 import './App.css'
@@ -94,7 +94,7 @@ class App extends Component {
                   </List>
                 </div>
               </Drawer>
-              <Header drawerOpenClickHandler={this.toggleDrawer}></Header> 
+              <Header userStore = {this.props.userStore} drawerOpenClickHandler={this.toggleDrawer}></Header> 
               
               <Main userStore={this.props.userStore}></Main>
             </div>

@@ -30,7 +30,14 @@ class Login extends Component {
 
     const { enqueueSnackbar } = this.props;
     enqueueSnackbar("logged in");
-    this.props.userStore.userInfo = userData.users[0];
+    this.props.userStore.users.forEach(user => {
+      if (user.rcs_id == this.props.userStore.userInfo.username)
+          {
+            this.props.userStore.userInfo =  user
+          
+          }
+          console.log(user)
+    });
     this.props.userStore.loggedIn = true;
     this.redirectTo('home');
 

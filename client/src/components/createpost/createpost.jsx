@@ -28,7 +28,8 @@ class CreatePost extends Component {
     }
   
     this.redirectTo = redirectTo.bind(this);
-
+    this.logChange = this.logChange.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
 
   logChange(e) {
@@ -37,6 +38,35 @@ class CreatePost extends Component {
         this.setState({ [e.target.name]: e.target.value });
       }
     }
+  }
+
+  handlePost(){
+      if (this.props.alert){
+          let newPost = {
+            "id": this.props.userStore.alerts.length + 1,
+            "title": this.state.title,
+            "message": this.state.message,
+            "poster_id": this.props.userStore.userInfo.id,
+            "group_id": this.props.group_id,
+            "posted": this.props.userStore.alerts.length + 1
+          }
+
+          this.props.userStore.alerts.unshift(newPost);
+          this.props.handleClose();
+      }
+      else {
+        let newPost = {
+          "id": this.props.userStore.alerts.length + 1,
+          "title": this.state.title,
+          "message": this.state.message,
+          "poster_id": this.props.userStore.userInfo.id,
+          "group_id": this.props.group_id,
+          "posted": Date.now()
+        }
+
+        this.props.userStore.discussions.unshift(newPost);
+        this.props.handleClose();
+      }
   }
   
   componentDidMount(){
@@ -69,6 +99,7 @@ class CreatePost extends Component {
                 label="Title"
                 type="text"
                 fullWidth
+                onChange={this.logChange}
             />
 
             <TextField
@@ -80,14 +111,15 @@ class CreatePost extends Component {
                 multiline
                 rows="5"
                 fullWidth
+                onChange={this.logChange}
             />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.props.handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={this.props.handleClose} color="primary">
-            Create
+          <Button onClick={this.handlePost} color="primary">
+            Post
           </Button>
         </DialogActions>
       </Dialog>);

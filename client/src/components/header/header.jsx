@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import logo from '../../logo.svg';
+import logo from '../../logo.png'
 import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -22,6 +22,10 @@ class Header extends Component {
 
   }
 
+  componentDidMount(){
+    if(!this.props.userStore.loggedIn)
+      this.redirectTo('/login'); 
+  }
   
   render(){
     const { anchorEl } = this.state;

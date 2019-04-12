@@ -28,7 +28,8 @@ class GroupHome extends Component {
       alerts: alerts,
       discussions: discussions,
       expanded: null,
-      expandedDiscussion: null
+      expandedDiscussion: null,
+      oprn: false
     }
   
     this.redirectTo = redirectTo.bind(this);
@@ -67,11 +68,11 @@ class GroupHome extends Component {
   }
   render() {
 
-    let alertsHTML = this.state.alerts.alerts.map((alert) =>{
-      return <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> 
+    let alertsHTML = this.props.userStore.alerts.map((alert) =>{
+      return alert.group_id == this.state.id ?  <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> : null
     });
 
-    let discussionHTML = this.state.discussions.discussions.sort((a,b)=>{
+    let discussionHTML = this.props.userStore.discussions.sort((a,b)=>{
        return a.posted < b.posted
     }).
     map((discussion) =>{
@@ -85,7 +86,7 @@ class GroupHome extends Component {
     return (
       <div className="container">
         <div className="pageHeader">
-          Welcome to Group ID: {this.state.id}
+          Welcome to {this.props.userStore.groups[this.state.id -1].name}
         </div>
         <Grid direction="row"
           justify="space-evenly"
@@ -117,7 +118,7 @@ class GroupHome extends Component {
             </Paper>
           </Grid>
         </Grid>
-        <CreatePost handleClose = {this.handleClose} alert={this.state.alertOpen} open = {this.state.open}/>
+        <CreatePost group_id={this.state.id} userStore={this.props.userStore} handleClose = {this.handleClose} alert={this.state.alertOpen} open = {this.state.open}/>
       </div>);
     }
   }

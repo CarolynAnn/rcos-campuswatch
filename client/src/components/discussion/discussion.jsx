@@ -17,21 +17,45 @@ import {observer} from 'mobx-react'
 class Discussion extends Component {
     constructor(props) {
       super(props)
-     
+        this.state ={
+            reply: ""
+        }
+
+        this.logChange = this.logChange.bind(this);
+        this.submit = this.submit.bind(this);
     }
 
+    logChange(e) {
+        if (e.target) {
+          if (e.target.name) {
+            this.setState({ [e.target.name]: e.target.value });
+          }
+        }
+      }
     
+    submit(){
+        console.log('submitting')
+        let reply = {
+            "id": this.props.userStore.replies.length + 1,
+            "message": this.state.reply,
+            "discussion_id": this.props.discussion.id,
+            "poster_id": this.props.userStore.userInfo.id,
+            "posted": Date.now()
+        }
+
+        this.props.userStore.replies.push(reply);
+    }
 
     render() {
         let discussion= this.props.discussion;
         let time = (new Date(discussion.posted))
         let day = time.toDateString()
         let t = time.toTimeString().substring(0,5);
-        let replyHTML = this.props.replies.map((reply) =>
+        let replyHTML = this.props.userStore.replies.map((reply) =>
         {
             let color = reply.poster_id == discussion.poster_id ? 'secondary' : 'default';
             
-            return <Grid item><Chip component={Link} to={'/user/' + reply.poster_id} key={reply.id} color={color} label={reply.message} /> </Grid>
+            return reply.discussion_id ==discussion.id ? <Grid item><Chip  key={reply.id} color={color} label={reply.message} /> <br /> <Link className="poster" to={'/user/' + reply.poster_id}>-{this.props.userStore.users[reply.poster_id-1].first_name + ' ' + this.props.userStore.users[reply.poster_id-1].last_name}</Link></Grid> : null
         });
         return <ExpansionPanel className="discussionPanel" expanded={this.props.expanded} onChange={this.props.onchange(discussion.id)}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -69,11 +93,11 @@ class Discussion extends Component {
                 </ Grid>
                 <Divider className="replyDiv"/>
                 <Grid item xs={12} container direction="row" alignItems="center" justify="center">
-                    <Grid item xs={10}>
-                        <InputBase fullWidth={true} multiline= {true} rowsMax={4} placeholder="Reply" />
+                    <Grid item xs={10} >
+                        <InputBase fullWidth={true} multiline= {true} name="reply" rowsMax={4} placeholder="Reply" onChange={this.logChange}/>
                     </Grid>
                     <Grid item xs={2} style={{height: "32px"}}>
-                    <IconButton  aria-label="Send">
+                    <IconButton  onClick={this.submit} aria-label="Send">
                         <Send />
                     </IconButton>
                     </Grid>
