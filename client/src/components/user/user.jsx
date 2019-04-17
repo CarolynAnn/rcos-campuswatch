@@ -1,35 +1,30 @@
 import React, {Component} from 'react';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, } from '../../services/util/util';
 import List from '@material-ui/core/List';
-import Alert from '../alert/alert';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import Discussion from '../discussion/discussion'
 import Group from '../group/group'
 import ListItem from '@material-ui/core/ListItem'
 import {observer} from 'mobx-react'
 import ListItemText from '@material-ui/core/ListItemText'
 
-var groups = require('../../data/groups.json');
-var discussions = require('../../data/discussions.json');
-let users = require('../../data/users.json');
 class User extends Component {
   constructor(props) {
     super(props)
     const splitUrl = this.props.location.pathname.split('/');
     
     let id = splitUrl[splitUrl.length - 1];
-    if (id == 'user')
+    if (id === 'user')
         id = this.props.userStore.userInfo.id
     console.log(id)
     this.state = {
       id: id, 
       redirect:false,
-      groups: groups,
-      discussions: discussions,
+      groups: this.props.userStore.groups,
+      discussions: this.props.userStore.discussions,
       expanded: null
     }
   
@@ -53,11 +48,13 @@ class User extends Component {
         
         let user = this.props.userStore.users[this.state.id-1];
         let same = false;
-        if (user.id === this.props.userStore.userInfo.id){
+        if (user.id == this.props.userStore.userInfo.id){
             same = true;
         }
         let groupsHTML = this.props.userStore.groups.map((group) =>{
-            return <Group key={group.id} group= {group} />      
+            if (user.groups.indexOf(group.id) > -1){
+              return <Group key={group.id} userStore={this.props.userStore} group= {group} /> 
+            }     
         });
 
         
@@ -91,7 +88,7 @@ class User extends Component {
                     </ListItem> : null
                     }
                     <ListItem>
-                        <ListItemText >Role: {user.role_id == 1 ? 'Community Memby' : 'Community Admin'}</ListItemText>
+                        <ListItemText >Role: {user.role_id === 1 ? 'Community Member' : 'Community Admin'}</ListItemText>
                     </ListItem> 
                 </List>
                 </Paper>

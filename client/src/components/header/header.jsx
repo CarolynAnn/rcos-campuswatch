@@ -1,9 +1,5 @@
 import React, {Component} from 'react'
 import logo from '../../logo.png'
-import Avatar from '@material-ui/core/Avatar';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Button from '@material-ui/core/Button';
 import {withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo} from '../../services/util/util';
@@ -28,7 +24,6 @@ class Header extends Component {
   }
   
   render(){
-    const { anchorEl } = this.state;
     return (
       <header className="App-header">
         <img onClick={this.props.drawerOpenClickHandler} src={logo} className="App-logo" alt="logo"/>

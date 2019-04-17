@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core/styles';
+
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -42,20 +42,21 @@ class Discussion extends Component {
             "poster_id": this.props.userStore.userInfo.id,
             "posted": Date.now()
         }
-
         this.props.userStore.replies.push(reply);
+        this.setState({reply: ''})
     }
 
     render() {
+        //console.log(this.props.userStore.replies)
         let discussion= this.props.discussion;
         let time = (new Date(discussion.posted))
         let day = time.toDateString()
         let t = time.toTimeString().substring(0,5);
         let replyHTML = this.props.userStore.replies.map((reply) =>
         {
-            let color = reply.poster_id == discussion.poster_id ? 'secondary' : 'default';
+            let color = reply.poster_id === discussion.poster_id ? 'secondary' : 'default';
             
-            return reply.discussion_id ==discussion.id ? <Grid item><Chip  key={reply.id} color={color} label={reply.message} /> <br /> <Link className="poster" to={'/user/' + reply.poster_id}>-{this.props.userStore.users[reply.poster_id-1].first_name + ' ' + this.props.userStore.users[reply.poster_id-1].last_name}</Link></Grid> : null
+            return reply.discussion_id ===discussion.id ? <Grid item key={reply.id}><Chip   color={color} label={reply.message} /> <br /> <Link className="poster" to={'/user/' + reply.poster_id}>-{this.props.userStore.users[reply.poster_id-1].first_name + ' ' + this.props.userStore.users[reply.poster_id-1].last_name}</Link></Grid> : null
         });
         return <ExpansionPanel className="discussionPanel" expanded={this.props.expanded} onChange={this.props.onchange(discussion.id)}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -83,7 +84,7 @@ class Discussion extends Component {
         </ExpansionPanelSummary>
         <Divider />
         <ExpansionPanelDetails>
-            <Grid direction ="row">
+            <Grid container direction ="row">
                 <Grid item direction ="column" 
                 justify="space-evenly"
                 alignItems="flex-end"
@@ -94,7 +95,7 @@ class Discussion extends Component {
                 <Divider className="replyDiv"/>
                 <Grid item xs={12} container direction="row" alignItems="center" justify="center">
                     <Grid item xs={10} >
-                        <InputBase fullWidth={true} multiline= {true} name="reply" rowsMax={4} placeholder="Reply" onChange={this.logChange}/>
+                        <InputBase fullWidth={true} multiline= {true} name="reply" rowsMax={4} placeholder="Reply" onChange={this.logChange} value={this.state.reply}/>
                     </Grid>
                     <Grid item xs={2} style={{height: "32px"}}>
                     <IconButton  onClick={this.submit} aria-label="Send">

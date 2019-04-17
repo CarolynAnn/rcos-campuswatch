@@ -1,11 +1,21 @@
-import {observable, action, decorate} from 'mobx'
+import {observable, decorate} from 'mobx'
 var groups = require('../data/groups.json');
 var users = require('../data/users.json');
 var discussions = require('../data/discussions.json')
 var alerts = require('../data/alerts.json');
 class UserStore {
     
-    userInfo = users.users[0];
+    userInfo = {
+      id: 0,
+      first_name: "",
+      last_name: "",
+      rcs_id: "",
+      password: "",
+      address: "",
+      picture_location: null,
+      role_id: 1
+    }
+    
     groups = groups.groups;
     allGroups = groups.groups;
     users= users.users;

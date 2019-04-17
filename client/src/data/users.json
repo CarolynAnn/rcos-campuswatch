@@ -8,7 +8,12 @@
             "password": "a",
             "address": "1 15th st",
             "picture_location": null,
-            "role_id": 2
+            "role_id": 2,
+            "groups":[
+                1,
+                2,
+                3
+            ]
         },
         {
             "id": 2,
@@ -18,7 +23,11 @@
             "password": "a",
             "address": "1 14th st",
             "picture_location": null,
-            "role_id": 1
+            "role_id": 1,
+            "groups":[
+                1,
+                3
+            ]
         },
         {
             "id": 3,
@@ -28,7 +37,12 @@
             "password": "a",
             "address": "1 delaware st",
             "picture_location": null,
-            "role_id": 1
+            "role_id": 1,
+            "groups":[
+                
+                2,
+                3
+            ]
         },
         {
             "id": 4,
@@ -38,7 +52,12 @@
             "password": "a",
             "address": "1 congress st",
             "picture_location": null,
-            "role_id": 1
+            "role_id": 1,
+            "groups":[
+                
+                4,
+                3
+            ]
         }
     ]
 }

@@ -6,11 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import {withRouter, Link} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
-import {redirectTo, ValidateEmail} from '../../services/util/util';
+import {redirectTo} from '../../services/util/util';
 import './login.css'
 import {observer} from 'mobx-react'
-var  userData = require('../../data/users.json');
-var groups = require('../../data/groups.json');
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +17,16 @@ class Login extends Component {
     this.state = {
       redirect:false
     }
-  
+    this.props.userStore.userInfo ={
+      id: 0,
+      first_name: "",
+      last_name: "",
+      rcs_id: "",
+      password: "",
+      address: "",
+      picture_location: null,
+      role_id: 1
+    }
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
@@ -34,10 +41,13 @@ class Login extends Component {
       if (user.rcs_id == this.props.userStore.userInfo.username)
           {
             this.props.userStore.userInfo =  user
-          
+            
           }
-          console.log(user)
     });
+    if (this.props.userStore.userInfo.id == 0){
+      this.props.userStore.userInfo =  this.props.userStore.users[0]
+    }
+    console.log(this.props.userStore.userInfo);
     this.props.userStore.loggedIn = true;
     this.redirectTo('home');
 
@@ -61,15 +71,11 @@ class Login extends Component {
         document.getElementById("loginButton").click();
       }
     });
+
+    
   }
   render() {
-    const styles = {
-      card: {
-        minWidth: 275,
-        maxWidth: 400
-      }
-    };
-    console.log(this.props)
+    
     return (
       <Card className="loginBox" id="loginForm">
       

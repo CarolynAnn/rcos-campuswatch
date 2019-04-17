@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, } from '../../services/util/util';
 import './createpost.css'
@@ -10,7 +10,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Divider } from '@material-ui/core';
 import Slide from '@material-ui/core/Slide'
 import {observer} from 'mobx-react'
 

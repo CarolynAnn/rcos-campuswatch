@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {Link, withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
-import { redirectTo, ValidateEmail } from '../../services/util/util';
+import { redirectTo } from '../../services/util/util';
 import 'bootstrap/dist/css/bootstrap.css';
 import './register.css'
 import {Card, CardContent, CardActions } from '@material-ui/core';
@@ -25,7 +25,7 @@ class Register extends Component {
     this.handleFirstChange = this.handleFirstChange.bind(this)
     this.handleLastChange = this.handleLastChange.bind(this)
     this.handleAddressChange = this.handleAddressChange.bind(this)
-
+    
     this.redirectTo = redirectTo.bind(this)
     this.handleRegister = this.handleRegister.bind(this)
 
@@ -36,8 +36,21 @@ class Register extends Component {
       enqueueSnackbar("Passwords do not match")
       return;
     }
+    let user = {
+      id: this.props.userStore.users.length + 1,
+      first_name: this.props.userStore.userInfo.first,
+      last_name: this.props.userStore.userInfo.last,
+      rcs_id: this.props.userStore.userInfo.username,
+      password: this.props.userStore.userInfo.password,
+      address: this.props.userStore.userInfo.address,
+      picture_location: null,
+      role_id: 1,
+      groups: []
+    }
 
+    this.props.userStore.users.push(user);
     enqueueSnackbar("registered")
+    this.redirectTo('/login')
 
   }
   handleUsernameChange(event){
@@ -95,6 +108,7 @@ class Register extends Component {
         <br/>
         <TextField className="cardContent" id="address" label="Street Address"  type="text"  defaultValue={this.props.userStore.userInfo.address} onChange={this.handleAddressChange}/>
         <br/>
+
         <TextField className="cardContent" id="password" label="Password" type="password" defaultValue={this.props.userStore.userInfo.password} onChange={this.handlePasswordChange}/>
         <br/>
         <TextField className="cardContent" id="confirmpassword" label="Confirm Password" type="password" onChange={this.handleConfirmPasswordChange}/>

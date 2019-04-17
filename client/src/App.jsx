@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {MuiThemeProvider} from '@material-ui/core/styles';
-import {observer} from 'mobx-react'
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -25,7 +23,7 @@ class App extends Component {
   
 
     this.redirectTo = redirectTo.bind(this);
-
+    this.logout= this.logout.bind(this);
   }
 
   goToDrawer(text){
@@ -39,14 +37,15 @@ class App extends Component {
     console.log("set to " + this.state.drawerIsOpen)
   }
 
-  logout(){
-    this.props.userStore.loggedIn = false;
+  logout(e){
+    //e.preventDefault();
+    //this.props.userStore.loggedIn = false;
+    //this.props.history.push('/login')
   }
 
   render() {
 
     var links =[ 'login', 'register']
-    let pathname = window.location.pathname;
     if (this.props.userStore.loggedIn)
     {
       links = [ 'home', 'allgroups', 'user']
@@ -65,7 +64,7 @@ class App extends Component {
     if (this.props.userStore.loggedIn){
       drawers.push((
         <div key={4}>
-         <Link className="drawerLink" to='/login' onClick={this.logout}>
+         <Link className="drawerLink" to='/login'>
            <ListItem button key={4}>
             log out
            </ListItem>

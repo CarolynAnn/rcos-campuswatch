@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, } from '../../services/util/util';
 import List from '@material-ui/core/List';
@@ -9,20 +9,11 @@ import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import CreateGroup from '../creategroup/creategroup'
 import './allgroups.css';
-import red from '@material-ui/core/colors/red';
 import AddCircle from '@material-ui/icons/AddCircle';
 import {observer} from 'mobx-react'
 
 var groups = require('../../data/groups.json');
 
-const styles = {
-    iconHover: {
-      
-      '&:hover': {
-        color: red[800],
-      },
-    },
-  };
 
 class AllGroups extends Component {
   constructor(props) {
@@ -57,7 +48,7 @@ class AllGroups extends Component {
 
     
     let groupsHTML = this.props.userStore.groups.map((group) =>{
-        return <Group key={group.id} group= {group} />      
+        return <Group key={group.id}  userStore={this.props.userStore} group= {group} />      
     });
 
     return (

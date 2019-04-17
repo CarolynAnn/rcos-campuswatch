@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { withSnackbar } from 'notistack';
 import {redirectTo, } from '../../services/util/util';
 import List from '@material-ui/core/List';
@@ -13,17 +13,15 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import CreatePost from '../createpost/createpost'
 import {observer} from 'mobx-react'
 
-var alerts = require('../../data/alerts.json');
-var groups = require('../../data/groups.json');
-
 class Home extends Component {
   constructor(props) {
     super(props)
     
     this.state = {
       redirect:false,
-      alerts: alerts,
-      groups: groups,
+      alerts: this.props.userStore.alerts,
+      groups: this.props.userStore.groups,
+      myGroups: this.props.userStore.userInfo.groups,
       expanded: null,
       open: false
     }
@@ -54,15 +52,26 @@ class Home extends Component {
   
   }
   render() {
-
+    console.log(this.props.userStore.userInfo.groups)
+    
     let alertsHTML = this.props.userStore.alerts.map((alert) =>{
-      return alert.group_id == 0 ? <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> : null
+      
+      return alert.group_id === 0 ? <Alert key={alert.id} userStore={this.props.userStore} onchange={this.handleChange} alert={alert} expanded={this.state.expanded === alert.id} /> : null
     });
 
+    
+    
     let groupsHTML = this.props.userStore.groups.map((group) =>{
-        return <Group key={group.id} group= {group} />      
+        if (this.state.myGroups.indexOf(group.id) > -1){
+         
+          return <Group key={group.id} group= {group} userStore={this.props.userStore} />     
+        } 
+        else
+          return
     });
-
+    console.log(groupsHTML)
+   
+    
     return (
       <div className="container">
         <div className="pageHeader">
@@ -76,9 +85,12 @@ class Home extends Component {
             <Paper>
               <div className="header">
                 Community Alerts
+                {this.props.userStore.userInfo.role_id === 2 ?
                 <div className="right">
                     <AddCircle onClick={this.handleClickOpen}/>    
                 </div>
+                : null
+                }
               </div>
               <Divider />
               {alertsHTML}
@@ -101,4 +113,4 @@ class Home extends Component {
     }
   }
 
-  export default  withRouter(withSnackbar(Home));
+  export default  observer(withRouter(withSnackbar(Home)));
