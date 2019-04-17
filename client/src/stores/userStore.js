@@ -3,6 +3,7 @@ var groups = require('../data/groups.json');
 var users = require('../data/users.json');
 var discussions = require('../data/discussions.json')
 var alerts = require('../data/alerts.json');
+var messages= require('../data/messages.json');
 class UserStore {
     
     userInfo = {
